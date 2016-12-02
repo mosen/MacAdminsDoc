@@ -125,18 +125,18 @@ Enter the public IP Address of your Infrastructure Manager server:
 .. figure:: img/jamf-im-sa-2.png
    :alt: Enter the public IP address of your infrastructure manager server
 
-
-
 Setup the frequency. I use the default value of 30 seconds:
-![IM User 1](https://raw.githubusercontent.com/Shufflepuck/MacAdminsDoc/master/MDM/CasperSuite/JSS/images/jamf-im-sa-1.png)
 
-If everything goes well, you should see the following:
-```
-Enrollment invitation stored.
-Successfully obtained enrollment invitation from https://ftiff.jamfcloud.com
-```
+.. figure:: img/jamf-im-sa-1.png
+   :alt: Set up the frequency
 
-### Create a LDAP Server
+If everything goes well, you should see the following::
+
+   Enrollment invitation stored.
+   Successfully obtained enrollment invitation from https://ftiff.jamfcloud.com
+
+Create a LDAP Server
+^^^^^^^^^^^^^^^^^^^^
 
 It's all downhill for now. Just kidding. This is the tricky part, as LDAP can be difficult to configure. We won't cover LDAP configuration here.
 
@@ -148,46 +148,55 @@ It's all downhill for now. Just kidding. This is the tricky part, as LDAP can be
 
 Make sure you choose the right port number. It should be >1024 and be reachable from internet to your public IP address.
 
-![](https://raw.githubusercontent.com/Shufflepuck/MacAdminsDoc/master/MDM/CasperSuite/JSS/images/jamf-im-ldap.png)
+.. image:: img/jamf-im-ldap.png
 
+Troubleshooting
+---------------
 
-## Troubleshooting
+Log files
+^^^^^^^^^
 
-### Log files
 Log files are located here:
 
 - /var/log/jamf-im-launcher.log
 - /var/log/jamf-im.log
 
-### LDAP Server needs authentication
-```
-Error: javax.naming.NamingException: [LDAP: error code 1 - 000004DC: LdapErr: DSID-0C0906E8, comment: In order to perform this operation a successful bind must be completed on the connection., data 0, v1db1�]; remaining name 'OU=Org,DC=fti,DC=io'
-Suggestion: No suggestion available
-```
+LDAP Server needs authentication
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-### Infrastructure Manager cannot bind to address
+Log message::
 
-```
-2016-08-30 14:43:16,834 INFO c.j.j.l.LpsServerSocketListener [lps: /13.93.87.150:31337 (ssl)] Sleeping for 5000 ms before retry of server socket bind for address /13.93.87.150:31337
-2016-08-30 14:43:21,835 INFO c.j.j.l.LpsServerSocketListener [lps: /13.93.87.150:31337 (ssl)] Waking for retry of server socket bind for address /13.93.87.150:31337
-2016-08-30 14:43:21,839 ERROR c.j.j.l.LpsServerSocketListener [lps: /13.93.87.150:31337 (ssl)] Failed to obtain server socket for address /13.93.87.150:31337
-com.jamfsoftware.jsam.lps.LpsException: Failed to bind server socket to [/13.93.87.150:31337]
-        at com.jamfsoftware.jsam.lps.socket.LpsSocketSupplier.bindServerSocket(LpsSocketSupplier.java:136) ~[11:ldap-proxy:0.0.1.20160714202842]
-        at com.jamfsoftware.jsam.lps.socket.LpsSocketSupplier.createSslServerSocket(LpsSocketSupplier.java:61) ~[11:ldap-proxy:0.0.1.20160714202842]
-        at com.jamfsoftware.jsam.lps.LpsServerSocketListener.safeCreateServerSocket(LpsServerSocketListener.java:150) [11:ldap-proxy:0.0.1.20160714202842]
-        at com.jamfsoftware.jsam.lps.LpsServerSocketListener.bindServerSocket(LpsServerSocketListener.java:114) [11:ldap-proxy:0.0.1.20160714202842]
-        at com.jamfsoftware.jsam.lps.LpsServerSocketListener.execute(LpsServerSocketListener.java:93) [11:ldap-proxy:0.0.1.20160714202842]
-        at com.jamfsoftware.jsam.lps.LpsServerSocketListener.run(LpsServerSocketListener.java:72) [11:ldap-proxy:0.0.1.20160714202842]
-Caused by: java.net.BindException: Cannot assign requested address
-        at java.net.PlainSocketImpl.socketBind(Native Method) ~[?:?]
-        at java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:387) ~[?:?]
-        at java.net.ServerSocket.bind(ServerSocket.java:375) ~[?:?]
-        at java.net.ServerSocket.bind(ServerSocket.java:329) ~[?:?]
-        at com.jamfsoftware.jsam.lps.socket.LpsSocketSupplier.bindServerSocket(LpsSocketSupplier.java:132) ~[?:?]
-        ... 5 more
-2016-08-30 14:43:21,840 INFO c.j.j.l.LpsServerSocketListener [lps: /13.93.87.150:31337 (ssl)] Sleeping for 5000 ms before retry of server socket bind for address /13.93.87.150:31337
-```
+   Error: javax.naming.NamingException: [LDAP: error code 1 - 000004DC: LdapErr: DSID-0C0906E8, comment: In order to perform this operation a successful bind must be completed on the connection., data 0, v1db1�]; remaining name 'OU=Org,DC=fti,DC=io'
+   Suggestion: No suggestion available
 
-This error might happen if your server is not bound to a public address (if `ip show add` doesn't show the public address). This happens if you create a NAT to map a public IP address to a private IP.
+
+Infrastructure Manager cannot bind to address
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Log message::
+
+
+   2016-08-30 14:43:16,834 INFO c.j.j.l.LpsServerSocketListener [lps: /13.93.87.150:31337 (ssl)] Sleeping for 5000 ms before retry of server socket bind for address /13.93.87.150:31337
+   2016-08-30 14:43:21,835 INFO c.j.j.l.LpsServerSocketListener [lps: /13.93.87.150:31337 (ssl)] Waking for retry of server socket bind for address /13.93.87.150:31337
+   2016-08-30 14:43:21,839 ERROR c.j.j.l.LpsServerSocketListener [lps: /13.93.87.150:31337 (ssl)] Failed to obtain server socket for address /13.93.87.150:31337
+   com.jamfsoftware.jsam.lps.LpsException: Failed to bind server socket to [/13.93.87.150:31337]
+           at com.jamfsoftware.jsam.lps.socket.LpsSocketSupplier.bindServerSocket(LpsSocketSupplier.java:136) ~[11:ldap-proxy:0.0.1.20160714202842]
+           at com.jamfsoftware.jsam.lps.socket.LpsSocketSupplier.createSslServerSocket(LpsSocketSupplier.java:61) ~[11:ldap-proxy:0.0.1.20160714202842]
+           at com.jamfsoftware.jsam.lps.LpsServerSocketListener.safeCreateServerSocket(LpsServerSocketListener.java:150) [11:ldap-proxy:0.0.1.20160714202842]
+           at com.jamfsoftware.jsam.lps.LpsServerSocketListener.bindServerSocket(LpsServerSocketListener.java:114) [11:ldap-proxy:0.0.1.20160714202842]
+           at com.jamfsoftware.jsam.lps.LpsServerSocketListener.execute(LpsServerSocketListener.java:93) [11:ldap-proxy:0.0.1.20160714202842]
+           at com.jamfsoftware.jsam.lps.LpsServerSocketListener.run(LpsServerSocketListener.java:72) [11:ldap-proxy:0.0.1.20160714202842]
+   Caused by: java.net.BindException: Cannot assign requested address
+           at java.net.PlainSocketImpl.socketBind(Native Method) ~[?:?]
+           at java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:387) ~[?:?]
+           at java.net.ServerSocket.bind(ServerSocket.java:375) ~[?:?]
+           at java.net.ServerSocket.bind(ServerSocket.java:329) ~[?:?]
+           at com.jamfsoftware.jsam.lps.socket.LpsSocketSupplier.bindServerSocket(LpsSocketSupplier.java:132) ~[?:?]
+           ... 5 more
+   2016-08-30 14:43:21,840 INFO c.j.j.l.LpsServerSocketListener [lps: /13.93.87.150:31337 (ssl)] Sleeping for 5000 ms before retry of server socket bind for address /13.93.87.150:31337
+
+
+This error might happen if your server is not bound to a public address (if ``ip show add`` doesn't show the public address).
+This happens if you create a NAT to map a public IP address to a private IP.
 
 I haven't found the solution for this one yet. It seems that JAMF haven't thought of this use case.

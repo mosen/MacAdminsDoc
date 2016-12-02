@@ -6,6 +6,7 @@ JAMF Pro (Formerly Casper Suite)
 
     distributionpoints
     infrastructuremanager
+    manualupgrade
 
 
 Links

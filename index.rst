@@ -44,6 +44,7 @@ Contents:
    resources
 
    applications/index
+   dep/index
    mdm/index
    packaging/index
    profiles/index
