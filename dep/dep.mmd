@@ -1,0 +1,22 @@
+sequenceDiagram
+Mac->DEP: Is this Mac part of DEP?
+DEP->Mac: Yes, address of MDM server and basic settings
+Mac->MDM: Request Enrollment
+MDM->Mac: Unauthorized (401)
+Mac->MDM: Send authentication (Basic/Digest)
+opt
+MDM->Directory: Validate authentication
+Directory->MDM: Authentication validated
+End
+MDM->Mac: Enrollment Profile and Certificates
+Mac->Mac: Install profile and certificates
+Mac->MDM:Device Information
+MDM->Mac: SCEP Enrollment Configuration Profile
+Mac->Mac: Generate key pair
+Mac->MDM: Get Certificate with SCEP
+MDM->SCEP: Certificate Signing Request (CSR)
+SCEP->Mac: Device Certificate
+Mac->MDM: Encrypted Request Final Profile
+MDM->Mac: Encrypted .mobileconfig profile
+Mac->Mac: Install .mobileconfig Profile
+MDM->Mac: Push scoped Configuration Profiles

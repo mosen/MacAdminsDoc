@@ -7,6 +7,17 @@ Configuration Profiles.
 
 This is the Apple officially sanctioned way to manage your devices, although there are many other options for macOS.
 
+Troubleshooting
+---------------
+
+On macOS Sierra
+^^^^^^^^^^^^^^^
+
+To configure the logging system to display more debug information from **managedclient**, you need to install a
+logging profile.
+
+
+
 .. toctree::
     :maxdepth: 2
 
