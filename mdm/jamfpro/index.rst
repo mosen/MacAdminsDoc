@@ -7,6 +7,7 @@ JAMF Pro (Formerly Casper Suite)
     distributionpoints
     infrastructuremanager
     manualupgrade
+    restrict-major-os-update
 
 
 Links
