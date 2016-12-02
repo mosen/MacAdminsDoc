@@ -3,3 +3,10 @@
 
 # Vim swap files
 .*.sw?
+
+# Sphinx output
+_build
+
+# IntelliJ
+*.iml
+.idea

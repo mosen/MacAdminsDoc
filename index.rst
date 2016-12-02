@@ -40,15 +40,13 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   profiles
+   contributing
+   resources
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   applications/index
+   mdm/index
+   packaging/index
+   profiles/index
 
 
 License
