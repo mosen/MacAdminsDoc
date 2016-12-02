@@ -5,6 +5,7 @@ JAMF Pro (Formerly Casper Suite)
     :maxdepth: 2
 
     distributionpoints
+    infrastructuremanager
 
 
 Links

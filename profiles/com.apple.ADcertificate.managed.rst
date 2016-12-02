@@ -11,6 +11,7 @@ Links
 
 - `Official documentation (Apple) <https://developer.apple.com/library/content/featuredarticles/iPhoneConfigurationProfileRef/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010206-CH1-SW238>`_.
 - `How to request a certificate from a Microsoft Certificate Authority using DCE/RPC <https://support.apple.com/en-au/HT204602>`_.
+- `OSX and AD certificate requests: some tips <https://macmule.com/2015/09/06/osx-ad-certificate-requests-some-tips/>`_ by macmule.
 
 Requirements
 ------------
