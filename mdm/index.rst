@@ -17,6 +17,8 @@ To configure the logging system to display more debug information from **managed
 logging profile.
 
 
+Sections
+--------
 
 .. toctree::
     :maxdepth: 2
