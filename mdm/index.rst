@@ -11,4 +11,4 @@ This is the Apple officially sanctioned way to manage your devices, although the
     :maxdepth: 2
 
     airwatch/index
-    jamfproplus/index
+    jamfpro/index

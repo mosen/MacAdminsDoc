@@ -61,55 +61,71 @@ I found the best way to install Oracle Java 1.8 is doing the following::
 
 You'll have to access Oracle's License to proceed.
 
-As this is a third-party repository, use it with caution, and only on test instances. If you found a better way, please [contribute](https://github.com/Shufflepuck/MacAdminsDoc/blob/master/00_About/Contributing.md)!
+As this is a third-party repository, use it with caution, and only on test instances. If you found a better way, please :doc:`contributing`!
 
+Test with ``java -version`` to see if it works::
 
-Test with `java -version` to see if it works.
-```sh
-$ java -version
-java version "1.8.0_101"
-Java(TM) SE Runtime Environment (build 1.8.0_101-b13)
-Java HotSpot(TM) 64-Bit Server VM (build 25.101-b13, mixed mode)
-```
+    $ java -version
+    java version "1.8.0_101"
+    Java(TM) SE Runtime Environment (build 1.8.0_101-b13)
+    Java HotSpot(TM) 64-Bit Server VM (build 25.101-b13, mixed mode)
 
-### JAMF Infrastructure Manager package
+JAMF Infrastructure Manager package
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Connect to JAMF Nation
-2. Go to [My Assets](https://jamfnation.jamfsoftware.com/myAssets.html)
+2. Go to `My Assets <https://jamfnation.jamfsoftware.com/myAssets.html>`_.
 3. Download Infrastructure Manager
 4. Upload it to your Linux server
 
+I use ``scp`` to upload the binary to my server::
 
-I use `scp` to upload the binary to my server:
-```
-cd ~/Downloads
-scp jamf-im_1.0.0-0_all.deb fti@13.93.87.150:
-```
+    cd ~/Downloads
+    scp jamf-im_1.0.0-0_all.deb fti@13.93.87.150:
 
-## Configuring
-### Create the correct user in JSS
+Configuring
+-----------
+
+Create the correct user in JSS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create a Standard User that has only "Infrastructure Manager" role.
 
-![IM User 1](https://raw.githubusercontent.com/Shufflepuck/MacAdminsDoc/master/MDM/CasperSuite/JSS/images/jamf-im-1.png)
-![IM User 2](https://raw.githubusercontent.com/Shufflepuck/MacAdminsDoc/master/MDM/CasperSuite/JSS/images/jamf-im-2.png)
+.. figure:: img/jamf-im-1.png
+   :alt: Account
 
-### Launch the setup assistant
 
-By installing the package, you'll launch the setup assistant.
-```
-sudo dpkg -i jamf-im_1.0.0-0_all.deb
-```
+.. figure:: img/jamf-im-2.png
+   :alt: Privileges
+
+
+Launch the setup assistant
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By installing the package, you'll launch the setup assistant::
+
+    sudo dpkg -i jamf-im_1.0.0-0_all.deb
+
 
 Enter the host for your cloud instance:
-![IM User 5](https://raw.githubusercontent.com/Shufflepuck/MacAdminsDoc/master/MDM/CasperSuite/JSS/images/jamf-im-sa-5.png)
+
+.. figure:: img/jamf-im-sa-5.png
+   :alt: Cloud Instance Host
 
 Enter the login and password you created earlier:
-![IM User 4](https://raw.githubusercontent.com/Shufflepuck/MacAdminsDoc/master/MDM/CasperSuite/JSS/images/jamf-im-sa-4.png)
-![IM User 3](https://raw.githubusercontent.com/Shufflepuck/MacAdminsDoc/master/MDM/CasperSuite/JSS/images/jamf-im-sa-3.png)
+
+.. figure:: img/jamf-im-sa-4.png
+   :alt: Enter the infrastructure manager login
+
+.. figure:: img/jamf-im-sa-3.png
+   :alt: Enter the infrastructure manager password
 
 Enter the public IP Address of your Infrastructure Manager server:
-![IM User 2](https://raw.githubusercontent.com/Shufflepuck/MacAdminsDoc/master/MDM/CasperSuite/JSS/images/jamf-im-sa-2.png)
+
+.. figure:: img/jamf-im-sa-2.png
+   :alt: Enter the public IP address of your infrastructure manager server
+
+
 
 Setup the frequency. I use the default value of 30 seconds:
 ![IM User 1](https://raw.githubusercontent.com/Shufflepuck/MacAdminsDoc/master/MDM/CasperSuite/JSS/images/jamf-im-sa-1.png)
