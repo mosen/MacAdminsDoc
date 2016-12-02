@@ -179,5 +179,5 @@ I found out the easiest way to see what's actually store on Amazon S3 is to use 
 .. NOTE:: your file may take several minutes to show up here.
 
 .. image:: img/cyberduck-s3-add.png
-.. image:: img/cuberduck-s3.png
+.. image:: img/cyberduck-s3.png
 
